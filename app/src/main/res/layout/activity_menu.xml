@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.listview.pedor.com.restaurant.CategoriesActivity">
+    tools:context="app.listview.pedor.com.restaurant.MenuActivity">
 
     <ListView
-        android:id="@+id/categories"
+        android:id="@+id/menuList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 </android.support.constraint.ConstraintLayout>
