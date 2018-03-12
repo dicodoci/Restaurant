@@ -20,21 +20,27 @@ public class CategoriesActivity extends AppCompatActivity implements CategoriesR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         categoriesListView = findViewById(R.id.categories);
+
+        // Call to CategoriesRequest class the get categories
         new CategoriesRequest(getApplicationContext()).getCategories(this);
         categoriesListView.setOnItemClickListener(new CategoryClickListener());
     }
 
+    // If the categories are retrieved, make an adapter fill the list with items
     @Override
     public void gotCategories(ArrayList<String> categories) {
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1 , categories);
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this,
+                                                android.R.layout.simple_list_item_1 , categories);
         categoriesListView.setAdapter(categoryAdapter);
     }
 
+    // If the categories could not be retrieved, create an error toast for the user
     @Override
     public void gotCategoriesError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    // ClickListener that starts the menu activity with the clicked category.
     public class CategoryClickListener implements AdapterView.OnItemClickListener {
 
         @Override

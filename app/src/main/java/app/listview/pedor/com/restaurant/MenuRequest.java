@@ -26,11 +26,13 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
     private Callback callbackActivity;
     private String intendedCategory;
 
+    // If error occurs send error message
     @Override
     public void onErrorResponse(VolleyError error) {
         callbackActivity.gotMenuError(error.getMessage());
     }
 
+    // If JSON was correctly retrieved, get all the items and add them as MenuItem to the array
     @Override
     public void onResponse(JSONObject response) {
         JSONArray menuJSON;
@@ -69,6 +71,7 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
         this.intendedCategory = intendedCategory;
     }
 
+    // Request the JSON Object from the url
     public void getMenu(Callback activity) {
         RequestQueue queue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, this, this);

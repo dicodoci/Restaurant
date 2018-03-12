@@ -22,11 +22,13 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
     private ArrayList<String> categoriesArray = new ArrayList<String>();
     private Callback callbackActivity;
 
+    // If error occurs send error message
     @Override
     public void onErrorResponse(VolleyError error) {
         callbackActivity.gotCategoriesError(error.getMessage());
     }
 
+    // If JSON was correctly retrieved, get all the items and add them as strings to the array
     @Override
     public void onResponse(JSONObject response) {
         JSONArray categoriesJSON ;
@@ -46,11 +48,11 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
         void gotCategoriesError(String message);
     }
 
-
     public CategoriesRequest(Context context) {
         this.context = context;
     }
 
+    // Request the JSON object from the url
     public void getCategories(Callback activity) {
         RequestQueue queue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null, this, this);

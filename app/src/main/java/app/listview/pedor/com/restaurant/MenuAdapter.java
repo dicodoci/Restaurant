@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class MenuAdapter extends ArrayAdapter<MenuItem> {
     private ArrayList<MenuItem> menuItems;
 
+    // Constructor
     public MenuAdapter(@NonNull Context context, int resource, @NonNull ArrayList<MenuItem> objects) {
         super(context, resource, objects);
         menuItems = objects;
@@ -30,10 +31,12 @@ public class MenuAdapter extends ArrayAdapter<MenuItem> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_item, parent, false);
         }
 
+        // Get all info views
         ImageView photoView = convertView.findViewById(R.id.photo);
         TextView nameView = convertView.findViewById(R.id.name);
         TextView priceView = convertView.findViewById(R.id.price);
 
+        // Set all views with correct information
         nameView.setText(menuItems.get(position).getName());
         priceView.setText("\u20ac" + menuItems.get(position).getPrice()+"0");
         String imageUrl = menuItems.get(position).getImageUrl();
